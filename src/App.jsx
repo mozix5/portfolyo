@@ -9,6 +9,8 @@ const App = () => {
   }, []);
 
   const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
+
   const fetchData = async () => {
     try {
       const response = await axios.get(
@@ -16,6 +18,7 @@ const App = () => {
       );
       console.log(response.data.user);
       setData(response?.data.user);
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -30,7 +33,17 @@ const App = () => {
   // });
   return (
     <div className=" overflow-x-hidden  ">
-      <Home aboutData={data?.about}/>
+      {isLoading ? (
+        <div>loading</div>
+      ) : (
+        <Home
+          name={data.about?.name}
+          address={data.about?.address}
+          avatar={data.about?.avatar}
+          title={data.about?.title}
+          email={data.about?.contactEmail}
+        />
+      )}
       {/* <div className="scroll" ref={scrollRef}>
         <h1 data-scroll data-scroll-speed="3" data-scroll-position="top">
           Locomotive Scroll in React
