@@ -4,13 +4,12 @@ import React, { useRef } from "react";
 import { horizontalLoop } from "../helpers/horixontalLoop";
 import { Observer } from "gsap/all";
 
-const MarqueeContainer = () => {
+const MarqueeContainer = ({ name }) => {
   const boxRef = useRef();
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(Observer);
   useGSAP(
     () => {
-      // gsap.to(boxRef.current, { x: 100 });
       const loop = horizontalLoop(".box", { repeat: -1 });
       Observer.create({
         onChangeY(self) {
@@ -34,14 +33,15 @@ const MarqueeContainer = () => {
   return (
     <div
       ref={boxRef}
-      className=" text-9xl font-bold flex gap-4 overflow-hidden"
+      className="font-play text-[11rem] text-white font-medium flex gap-20 capitalize tracking-tighter"
     >
-      <div className="box">Dennis </div>
-      <div className="box">Dennis </div>
-      <div className="box">Dennis </div>
-      <div className="box">Dennis </div>
-      <div className="box">Dennis </div>
-      {/* <div className="box">Dennis Snellenberg</div> */}
+      <>
+        <div className="box whitespace-nowrap">{name} - </div>
+        <div className="box whitespace-nowrap">{name} - </div>
+        <div className="box whitespace-nowrap">{name} - </div>
+        <div className="box whitespace-nowrap">{name} - </div>
+        <div className="box whitespace-nowrap">{name} - </div>
+      </>
     </div>
   );
 };
