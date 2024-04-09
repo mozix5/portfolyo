@@ -23,8 +23,8 @@ const MarqueeContainer = ({ name }) => {
                 ease: "none",
               },
             })
-            .to(loop, { timeScale: factor * 1.5, duration: 0.2 })
-            .to(loop, { timeScale: factor / 1.5, duration: 1 }, "+=0.3");
+            .to(loop, { timeScale: factor * 1.2, duration: 0.2 })
+            .to(loop, { timeScale: factor / 1.2, duration: 0.2 });
         },
       });
     },
@@ -33,10 +33,9 @@ const MarqueeContainer = ({ name }) => {
   return (
     <div
       ref={boxRef}
-      className="font-play text-[11rem] text-white font-medium flex gap-20 capitalize tracking-tighter"
+      className="font-play text-[12rem] text-white font-[550] flex gap-20 capitalize tracking-tighter"
     >
       <>
-        <div className="box whitespace-nowrap">{name} - </div>
         <div className="box whitespace-nowrap">{name} - </div>
         <div className="box whitespace-nowrap">{name} - </div>
         <div className="box whitespace-nowrap">{name} - </div>
