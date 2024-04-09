@@ -2,18 +2,29 @@ import React from "react";
 import MarqueeContainer from "../components/MarqueeContainer";
 import Globe from "../icons/Globe";
 import ContainerSvg from "../icons/ContainerSvg";
+import { motion } from "framer-motion";
 
-const Home = ({ address, avatar, name, title, email }) => {
+const Home = ({ address, avatar, name, title, email, desc, subTitle }) => {
   return (
     <>
-      <div className="h-screen bg-[#696E79] relative flex justify-center items-center">
-        <div className="h-[90vh] w-[32rem] rounded-full ">
-          <img
-            className=" object-cover h-[90vh] rounded-t-full w-[32rem]"
-            src={avatar?.url}
-          ></img>
-        </div>
-        <div className="absolute top-1/2 -translate-y-1/2 flex justify-between items-center w-screen">
+      <motion.div
+        className="h-screen bg-[#999d9e] relative flex justify-center items-center bg-svg"
+        initial={{ opacity: 0, y: 60 }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6, ease: "easeInOut" },
+        }}
+      >
+        <section>
+          <div className="h-[90vh] w-[32rem] rounded-full">
+            <img
+              className=" object-cover h-[90vh] rounded-full w-[32rem]"
+              src={avatar?.url}
+            ></img>
+          </div>
+        </section>
+        <div className="absolute top-1/2 bottom-1/2  flex justify-between items-center w-screen">
           <div className=" relative w-fit">
             <ContainerSvg />
             <div className="absolute top-[30px] right-[29px]">
@@ -25,11 +36,14 @@ const Home = ({ address, avatar, name, title, email }) => {
           </div>
           <div className="mr-20 text-4xl text-white">{title}</div>
         </div>
-        <div className=" absolute bottom-1">
+        <div className=" absolute bottom-0">
           <MarqueeContainer name={name} />
         </div>
+      </motion.div>
+      <div className="flex py-32 px-28 gap-20 bg-white">
+        <div className="w-[70%] text-2xl leading-relaxed">{desc}</div>
+        <div className=" text-xl ">{subTitle}</div>
       </div>
-      <div></div>
     </>
   );
 };
