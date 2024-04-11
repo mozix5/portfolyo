@@ -4,6 +4,9 @@ import axios from "axios";
 import ProjectsSection from "./pages/ProjectsSection";
 import PreLoader from "./components/PreLoader";
 import { AnimatePresence } from "framer-motion";
+import Footer from "./components/Footer";
+import Skills from "./pages/Skills";
+import Demo from "./pages/Demo";
 
 const App = () => {
   const [loading, setLoading] = useState(true);
@@ -23,8 +26,8 @@ const App = () => {
       }
     };
 
-    fetchData(); 
-    
+    fetchData();
+
     const timeout = setTimeout(() => {
       setLoading(false);
     }, 3000);
@@ -48,7 +51,10 @@ const App = () => {
               desc={data.about?.description}
               subTitle={data.about?.subTitle}
             />
-            <ProjectsSection />
+            <ProjectsSection projects={data?.projects} />
+            <Demo projects={data?.projects}/>
+            <Skills skillsList={data?.skills}/>
+            <Footer />
           </>
         )}
       </AnimatePresence>
