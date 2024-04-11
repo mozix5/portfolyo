@@ -11,15 +11,12 @@
   },
   "dependencies": {
     "@gsap/react": "^2.1.0",
-    "@iojcde/react-locomotive-scroll-v5": "^0.0.45",
+    "@studio-freight/react-lenis": "^0.0.46",
     "axios": "^1.6.8",
     "framer-motion": "^11.0.25",
     "gsap": "^3.12.5",
-    "gsap-trial": "^3.12.5",
-    "locomotive-scroll": "^4.1.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-locomotive-scroll": "^0.2.2"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
