@@ -1,5 +1,8 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Card from "../components/Card";
+import Card2 from "../components/Card2";
+import Card3 from "../components/Card3";
 
 const ProjectsSection = ({ projects }) => {
   const containerRef = useRef(null);
@@ -12,36 +15,13 @@ const ProjectsSection = ({ projects }) => {
   const x1 = useTransform(
     scrollYProgress,
     [0, 0.45],
-    [0, window.innerHeight * -5.5]
+    [0, window.innerHeight * -1.5]
   );
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, window.innerHeight * 2]);
-
-  function Images() {
-    return (
-      <>
-        <motion.div
-          style={{ x: x1, y: y1 }}
-          className="flex relative top-[10%] h-[40vh]"
-          ref={carouselRef}
-        >
-          <img src="https://picsum.photos/300/200?random=1" alt="" />
-          <img src="https://picsum.photos/300/200?random=2" alt="" />
-          <img src="https://picsum.photos/300/200?random=3" alt="" />
-          <img src="https://picsum.photos/300/200?random=4" alt="" />
-          <img src="https://picsum.photos/300/200?random=5" alt="" />
-          <img src="https://picsum.photos/300/200?random=6" alt="" />
-          <img src="https://picsum.photos/300/200?random=7" alt="" />
-          <img src="https://picsum.photos/300/200?random=9" alt="" />
-          <img src="https://picsum.photos/300/200?random=2" alt="" />
-          <img src="https://picsum.photos/300/200?random=3" alt="" />
-          <img src="https://picsum.photos/300/200?random=6" alt="" />
-          {/* <img src="https://picsum.photos/300/200?random=7" alt="" /> */}
-          {/* <img src="https://picsum.photos/300/200?random=9" alt="" /> */}
-          {/* <img src="https://picsum.photos/300/200?random=4" alt="" /> */}
-        </motion.div>
-      </>
-    );
-  }
+  const y1 = useTransform(
+    scrollYProgress,
+    [0, 0.5],
+    [0, window.innerHeight * 1]
+  );
 
   return (
     <>
@@ -50,14 +30,32 @@ const ProjectsSection = ({ projects }) => {
         ref={containerRef}
       >
         <motion.div
-          className="relative top-[5%] rounded-r-full text-6xl z-40 w-[40vw] h-[400px] bg-black text-white font-semibold px-20 py-32"
+          className="relative top-[5%] rounded-r-3xl text-6xl z-40 w-[40vw] h-[450px] bg-black text-white font-semibold px-20 py-32"
           style={{ y: y1 }}
         >
           Recent Work
         </motion.div>
-        {/* <div className="py-20"> */}
-        <Images />
-        {/* </div> */}
+        <motion.div
+          className="relative top-[7%] flex gap-8 px-10"
+          style={{ x: x1, y: y1 }}
+        >
+          {projects.slice(1, 5).map((item) => {
+            return (
+              <Card2
+                url={item?.image.url}
+                name={item?.title}
+                techStack={item?.techStack}
+                desc={item?.description}
+                liveurl={item?.liveurl}
+                key={item?._id}
+              />
+            );
+          })}
+          <div className="relative">
+            {/* <Card /> */}
+            {/* <Card3 url={projects[1]?.image.url} /> */}
+          </div>
+        </motion.div>
       </div>
     </>
   );
